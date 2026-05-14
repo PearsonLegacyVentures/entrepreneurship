@@ -1,40 +1,34 @@
-/**
- * Site Configuration
- * Change these values to customize the starter for any brand.
- */
-
 export const siteConfig = {
-  name: "Studio",
-  tagline: "Strategy. Design. Results.",
-  description: "We help ambitious brands create exceptional digital experiences that drive growth and build lasting value.",
-  url: "https://example.com",
-  ogImage: "/og-image.jpg",
+  name: "Pearson Legacy Ventures",
+  shortName: "Founder Lab",
+  tagline:
+    "Practical founder systems for Caribbean entrepreneurs building digitally legitimate businesses.",
+  description:
+    "Pearson Legacy Ventures Founder Lab helps Caribbean entrepreneurs visualize, validate, brand, launch, and grow real digital businesses.",
+  url: "https://pearsonlegacyventures.com",
   nav: [
+    { label: "Home", href: "/" },
+    { label: "Entrepreneurship", href: "/entrepreneurship" },
+    { label: "Playbooks", href: "/playbooks" },
+    { label: "Templates", href: "/templates" },
+    { label: "Tools", href: "/tools" },
+    { label: "Founder Notes", href: "/founder-notes" },
     { label: "About", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Work", href: "/work" },
-    { label: "Contact", href: "/contact" },
+    { label: "Start Here", href: "/start-here" },
   ],
   footer: {
+    platform: [
+      { label: "Entrepreneurship", href: "/entrepreneurship" },
+      { label: "Playbooks", href: "/playbooks" },
+      { label: "Templates", href: "/templates" },
+      { label: "Tools", href: "/tools" },
+    ],
     company: [
-      { label: "About", href: "/about" },
-      { label: "Services", href: "/services" },
-      { label: "Work", href: "/work" },
-      { label: "Contact", href: "/contact" },
+      { label: "About PLV", href: "/about" },
+      { label: "Founder Notes", href: "/founder-notes" },
+      { label: "Work With Us", href: "/contact" },
+      { label: "Start Here", href: "/start-here" },
     ],
-    resources: [
-      { label: "Blog", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Press", href: "#" },
-    ],
-    legal: [
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
-    ],
-    social: {
-      twitter: "#",
-      linkedin: "#",
-      instagram: "#",
-    },
+    future: ["Investing", "AI", "Tourism", "Grants", "Venture Builds", "Portfolio"],
   },
 };
