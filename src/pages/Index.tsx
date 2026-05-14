@@ -1,118 +1,109 @@
+import { Link } from "react-router-dom";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { PageLayout } from "@/components/layout/PageLayout";
-import { HeroSection } from "@/components/blocks/HeroSection";
-import { TrustStrip } from "@/components/blocks/TrustStrip";
-import { ServiceCardGrid } from "@/components/blocks/ServiceCardGrid";
-import { FeatureGrid } from "@/components/blocks/FeatureGrid";
-import { CaseStudyGrid } from "@/components/blocks/CaseStudyGrid";
-import { ProcessSteps } from "@/components/blocks/ProcessSteps";
-import { TestimonialSection } from "@/components/blocks/TestimonialSection";
-import { FAQSection } from "@/components/blocks/FAQSection";
-import { CTABlock } from "@/components/blocks/CTABlock";
-import { Layers, Target, Zap, Shield, BarChart3, Palette } from "lucide-react";
+import { Seo } from "@/lib/seo";
+import { playbooks, tools } from "@/lib/content";
+import { BrandBadge } from "@/components/plv/BrandBadge";
+import { SectionHeading } from "@/components/plv/SectionHeading";
+import { FeatureGrid } from "@/components/plv/FeatureGrid";
+import { PlaybookCard } from "@/components/plv/PlaybookCard";
+import { ResourceCard } from "@/components/plv/ResourceCard";
+import { EmailCapture } from "@/components/plv/EmailCapture";
 
-const services = [
-  { icon: Layers, title: "Strategy & Consulting", description: "We align business objectives with clear digital strategies that drive measurable outcomes." },
-  { icon: Palette, title: "Design & Experience", description: "Crafting interfaces that balance beauty with usability, rooted in user research and brand identity." },
-  { icon: Zap, title: "Development & Engineering", description: "Building scalable, performant digital products with modern technologies and clean architecture." },
+const setupPath = [
+  { title: "Visualize the idea", description: "Use tools like Lovable to turn a rough idea into a live visual concept before wasting months overthinking." },
+  { title: "Build digital legitimacy", description: "Set up the website, domain, professional email, social profiles, Google presence, and trust signals that make the business feel real." },
+  { title: "Validate before you marry the idea", description: "Run simple ads, landing pages, and lead capture tests to see if the market actually cares." },
+  { title: "Launch with systems", description: "Use AI, templates, SOPs, and simple automations to move faster without building chaos." },
+  { title: "Grow with distribution", description: "Use SEO, Meta ads, founder-led content, and partnerships to turn attention into revenue." },
 ];
 
-const features = [
-  { icon: Target, title: "Outcome-Focused", description: "Every engagement starts with your goals. We measure success by the results that matter to your business." },
-  { icon: Shield, title: "Built to Last", description: "We create systems and products designed for longevity — not quick fixes that need replacing in six months." },
-  { icon: BarChart3, title: "Data-Informed", description: "Decisions backed by research, analytics, and user insights. Not guesswork, not trends — evidence." },
-  { icon: Layers, title: "Full-Service", description: "Strategy, design, development, and support under one roof. No handoffs, no miscommunication." },
-];
-
-const caseStudies = [
-  { title: "Reimagining the Guest Experience", category: "Hospitality", description: "A complete digital transformation for a luxury hotel group, increasing direct bookings by 40%.", href: "/work" },
-  { title: "Scaling a Wellness Brand", category: "Health & Wellness", description: "Brand identity and e-commerce platform for a fast-growing wellness company entering new markets.", href: "/work" },
-  { title: "Modernizing Financial Services", category: "Fintech", description: "A customer-facing platform redesign that reduced support tickets by 60% and improved retention.", href: "/work" },
-  { title: "Launching a Destination Platform", category: "Tourism", description: "An immersive digital experience showcasing destinations, driving a 3x increase in engagement.", href: "/work" },
-];
-
-const processSteps = [
-  { number: "01", title: "Discovery", description: "We learn your business, audience, and goals through focused workshops and research." },
-  { number: "02", title: "Strategy", description: "We define the roadmap, positioning, and success metrics before a single pixel is designed." },
-  { number: "03", title: "Execution", description: "Design and development happen in tight cycles with your feedback built into every sprint." },
-  { number: "04", title: "Launch & Scale", description: "We launch with confidence, then optimize based on real performance data." },
-];
-
-const testimonials = [
-  { quote: "They didn't just build a website — they helped us rethink how we connect with our audience. The results speak for themselves.", author: "Sarah Chen", role: "CEO", company: "Vertex Health" },
-  { quote: "The level of craft and strategic thinking exceeded our expectations. We've seen a measurable impact on every key metric.", author: "Marcus Rivera", role: "VP Marketing", company: "Pinnacle Group" },
-  { quote: "Professional, responsive, and genuinely invested in our success. They feel like an extension of our team, not an outside vendor.", author: "Emily Thornton", role: "Founder", company: "Meridian Studio" },
-];
-
-const faqItems = [
-  { question: "What industries do you work with?", answer: "We work across a range of industries including technology, hospitality, wellness, real estate, professional services, and more. Our approach adapts to the unique challenges of each sector." },
-  { question: "How long does a typical project take?", answer: "Most projects run between 8 and 16 weeks depending on scope. We'll provide a detailed timeline during our discovery phase so you know exactly what to expect." },
-  { question: "Do you offer ongoing support?", answer: "Yes. We offer retainer-based partnerships for ongoing design, development, and strategic support. Many of our clients work with us on a continuous basis." },
-  { question: "What does your pricing look like?", answer: "We scope and price each project based on its unique requirements. We're transparent about costs from the start and work with a range of budgets." },
-  { question: "Can you work with our existing team?", answer: "Absolutely. We frequently collaborate with in-house teams, complementing their strengths and filling gaps where needed." },
-];
+const founderTools = ["Business Name Checklist", "Website Launch Checklist", "Social Profile Audit", "Google Business Profile Checklist", "Ad Validation Tracker", "Pitch Deck Outline", "AI Prompt Vault", "Business Plan Builder"];
 
 export default function Home() {
+  const featuredPlaybooks = playbooks.filter((playbook) => playbook.featured).slice(0, 6);
+
   return (
     <PageLayout>
-      <HeroSection
-        eyebrow="Strategy · Design · Results"
-        heading="We build digital experiences that move businesses forward."
-        description="A strategic partner for ambitious brands. We combine sharp strategy, exceptional design, and modern engineering to create digital products that perform."
-        primaryCta={{ label: "Start a Project", href: "/contact" }}
-        secondaryCta={{ label: "View Our Work", href: "/work" }}
-      />
+      <Seo title="Build your business like it’s supposed to exist" description="Pearson Legacy Ventures Founder Lab helps Caribbean entrepreneurs turn rough ideas into digitally legitimate businesses using practical systems, modern tools, and real execution." canonicalPath="/" />
+      <section className="overflow-hidden bg-deep-navy text-white">
+        <div className="content-container grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
+          <div>
+            <BrandBadge>Founder Lab · Entrepreneurship</BrandBadge>
+            <h1 className="mt-6 max-w-5xl text-5xl font-semibold tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl">Build your business like it’s supposed to exist.</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/74 sm:text-xl">Pearson Legacy Ventures Founder Lab helps Caribbean entrepreneurs turn rough ideas into digitally legitimate businesses using practical systems, modern tools, and real execution.</p>
+            <p className="mt-6 max-w-2xl border-l border-gold/50 pl-5 text-base leading-8 text-white/66">Most entrepreneurs do not fail because the idea is bad. They fail because the setup is sloppy, the offer is unclear, the online presence looks unfinished, and the market was never properly tested.</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg" className="bg-gold text-navy hover:bg-gold/90"><Link to="/start-here">Start the Setup Path</Link></Button>
+              <Button asChild size="lg" variant="outline" className="border-white/20 bg-transparent text-white hover:bg-white hover:text-navy"><Link to="/tools">Browse Founder Tools</Link></Button>
+            </div>
+          </div>
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-4 shadow-2xl shadow-black/20 backdrop-blur">
+            <div className="rounded-[1.5rem] bg-white p-5 text-charcoal sm:p-6">
+              <div className="flex items-center justify-between border-b border-light-border pb-5">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-gray">Setup Path</p>
+                  <h2 className="mt-2 text-2xl font-semibold">Digital legitimacy board</h2>
+                </div>
+                <span className="rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold text-gold">MVP</span>
+              </div>
+              <div className="mt-6 space-y-3">
+                {["Visualize", "Validate", "Build", "Launch", "Grow"].map((item, index) => (
+                  <div key={item} className="flex items-center justify-between rounded-2xl border border-light-border bg-off-white p-4">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-gold" />
+                      <span className="font-semibold text-charcoal">{item}</span>
+                    </div>
+                    <span className="font-mono text-xs text-muted-gray">0{index + 1}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-5 rounded-2xl bg-deep-navy p-5 text-white">
+                <p className="text-sm leading-7 text-white/72">A founder war room for websites, domains, email, social presence, Google trust, ads, AI prompts, pitch assets, and the discipline to test before overbuilding.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <TrustStrip />
+      <section className="content-container section-padding">
+        <SectionHeading eyebrow="The path" title="The modern business setup path" description="A structured journey from rough idea to credible digital business infrastructure." />
+        <div className="mt-10"><FeatureGrid features={setupPath} columns={3} /></div>
+      </section>
 
-      <ServiceCardGrid
-        eyebrow="What We Do"
-        heading="End-to-end capabilities, one focused team."
-        description="We bring strategy, design, and technology together to solve complex problems and create lasting value."
-        services={services}
-      />
+      <section className="bg-white">
+        <div className="content-container grid gap-8 py-16 sm:py-20 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <SectionHeading eyebrow="Operating system" title="This is not a course. It is a founder operating system." description="Courses teach information. Founder Lab gives you repeatable setup systems, templates, prompts, checklists, and real execution paths." />
+          <div className="rounded-[2rem] border border-light-border bg-off-white p-6 sm:p-8">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {['Founder infrastructure', 'Digital legitimacy', 'Market validation', 'Operational clarity'].map((item) => <div key={item} className="rounded-2xl bg-white p-5 font-semibold text-charcoal shadow-sm">{item}</div>)}
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <FeatureGrid
-        eyebrow="Why Us"
-        heading="The difference is in the details."
-        description="We're not the biggest agency, and that's by design. Here's what sets us apart."
-        features={features}
-        columns={4}
-        variant="muted"
-      />
+      <section className="content-container section-padding">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading eyebrow="Playbooks" title="Featured Playbooks" description="Step-by-step systems for the first serious layers of the business." />
+          <Button asChild variant="outline"><Link to="/playbooks">View all playbooks</Link></Button>
+        </div>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{featuredPlaybooks.map((playbook) => <PlaybookCard key={playbook.id} playbook={playbook} />)}</div>
+      </section>
 
-      <CaseStudyGrid
-        eyebrow="Selected Work"
-        heading="Results that speak louder than case studies."
-        description="A selection of recent projects across industries."
-        items={caseStudies}
-      />
+      <section className="bg-white">
+        <div className="content-container py-16 sm:py-20">
+          <SectionHeading eyebrow="Tools" title="Founder Tools" description="Practical assets for thinking clearly, looking serious, and testing demand before the budget gets dramatic." />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{founderTools.map((title, index) => <ResourceCard key={title} title={title} description={tools[index]?.description || "A practical founder asset prepared for the toolkit."} href="/tools" eyebrow={index === 0 ? "Available" : "Tool"} cta="View tools" />)}</div>
+        </div>
+      </section>
 
-      <ProcessSteps
-        eyebrow="Our Process"
-        heading="A proven approach, tailored every time."
-        description="Four phases. Clear milestones. No surprises."
-        steps={processSteps}
-      />
-
-      <TestimonialSection
-        eyebrow="Client Feedback"
-        heading="What our partners say."
-        testimonials={testimonials}
-      />
-
-      <FAQSection
-        eyebrow="FAQ"
-        heading="Common questions, straight answers."
-        items={faqItems}
-      />
-
-      <CTABlock
-        heading="Ready to start something great?"
-        description="Let's talk about your next project and how we can help bring it to life."
-        primaryCta={{ label: "Get in Touch", href: "/contact" }}
-        secondaryCta={{ label: "View Our Work", href: "/work" }}
-        variant="dark"
-      />
+      <section className="content-container py-16 sm:py-20">
+        <div className="rounded-[2rem] border border-light-border bg-white p-6 shadow-sm sm:p-8 lg:p-12">
+          <SectionHeading eyebrow="Built from the field" title="Credibility without costume jewelry" description="This platform is built from real venture work across wellness, tourism, events, software, AI automation, digital marketing, SEO, partnerships, pitch competitions, and Caribbean market testing." />
+        </div>
+      </section>
+      <EmailCapture />
     </PageLayout>
   );
 }
